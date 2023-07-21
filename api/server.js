@@ -1,17 +1,11 @@
 const express = require("express");
-// const actionsRouter = require("./actions/actions-router");
-// const projectsRouter = require("./projects/projects-router");
-// const { actionsLogger } = require("./actions/actions-middlware");
-// const { projectsLogger } = require("./projects/projects-middleware");
-
 const server = express();
+const projectsRouter = require("./projects/projects-router");
+const actionsRouter = require("./actions/actions-router");
 
 server.use(express.json());
-// server.use("./actions", actionsRouter);
-// server.use("./projects", projectsRouter);
-
-// server.use(actionsLogger);
-// server.use(projectsLogger);
+server.use("/api/projects", projectsRouter);
+server.use("/api/actions", actionsRouter);
 
 server.use("*", (req, res) => {
   // catch all 404 errors middleware
